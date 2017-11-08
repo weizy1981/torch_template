@@ -27,7 +27,7 @@ class Sequential(nn.Module):
 
         self.sequential = nn.Sequential()
 
-    def add(self, layer=None, activation='relu'):
+    def add(self, layer=None, activation=None):
         if True:
             self.layer_num = self.layer_num + 1
             if layer != None:
@@ -42,6 +42,8 @@ class Sequential(nn.Module):
             elif activation == 'sigmoid':
                 name = 'activation' + str(self.layer_num)
                 self.sequential.add_module(name=name, module=nn.Sigmoid())
+            elif activation == None:
+                pass
 
     def forward(self, x):
         out = None
