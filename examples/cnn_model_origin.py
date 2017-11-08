@@ -28,15 +28,15 @@ class Lenet(nn.Module):
     def __init__(self):
         super(Lenet, self).__init__()
         self.conv = nn.Sequential()
-        self.conv.add_module(nn.Conv2d(1, 6, 3, stride=1, padding=1))
-        self.conv.add_module(nn.MaxPool2d(2, 2))
-        self.conv.add_module(nn.Conv2d(1, 6, 5, stride=1, padding=0))
-        self.conv.add_module(nn.MaxPool2d(2, 2))
+        self.conv.add_module(name='layer1', module=nn.Conv2d(1, 6, 3, stride=1, padding=1))
+        self.conv.add_module(name='layer2', module=nn.MaxPool2d(2, 2))
+        self.conv.add_module(name='layer3', module=nn.Conv2d(1, 6, 5, stride=1, padding=0))
+        self.conv.add_module(name='layer4', module=nn.MaxPool2d(2, 2))
 
         self.fc = nn.Sequential()
-        self.fc.add_module(nn.Linear(400, 120))
-        self.fc.add_module(nn.Linear(120, 84))
-        self.fc.add_module(nn.Linear(84, 10))
+        self.fc.add_module(name='layer5', module=nn.Linear(400, 120))
+        self.fc.add_module(name='layer6', module=nn.Linear(120, 84))
+        self.fc.add_module(name='layer7', module=nn.Linear(84, 10))
 
     def forward(self, x):
         out = self.conv(x)
