@@ -10,12 +10,12 @@ epochs = 50
 
 def build_model():
     model = Sequential()
-    model.add(Conv2d(1, 6, 3, stride=1, padding=1))
-    model.add(MaxPool2d(2, 2))
-    model.add(Conv2d(1, 6, 5, stride=1, padding=0))
-    model.add(MaxPool2d(2, 2))
-    model.add(Linear(400, 120))
-    model.add(Linear(120, 84))
+    model.add(Conv2d(1, 6, 3, stride=1, padding=1), activation='relu')
+    model.add(MaxPool2d(2, 2), activation='relu')
+    model.add(Conv2d(6, 16, 5, stride=1, padding=0), activation='relu')
+    model.add(MaxPool2d(2, 2), activation='relu')
+    model.add(Linear(400, 120), activation='relu')
+    model.add(Linear(120, 84), activation='relu')
     model.add(Linear(84, 10))
     return model
 
@@ -29,11 +29,11 @@ if __name__ == '__main__':
     trainset = MNIST('./data', train=True, transform=trans_img, download=True)
     testset = MNIST('./data', train=False, transform=trans_img, download=True)
 
-    train_x = trainset.train_data
-    train_y = trainset.train_labels
+    train_x = trainset.train_data.numpy()
+    train_y = trainset.train_labels.numpy()
 
-    test_x = testset.test_data
-    test_y = testset.test_labels
+    test_x = testset.test_data.numpy()
+    test_y = testset.test_labels.numpy()
 
     lenet = build_model()
     lenet.compile(lr=lr)

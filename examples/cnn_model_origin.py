@@ -30,7 +30,7 @@ class Lenet(nn.Module):
         self.conv = nn.Sequential()
         self.conv.add_module(name='layer1', module=nn.Conv2d(1, 6, 3, stride=1, padding=1))
         self.conv.add_module(name='layer2', module=nn.MaxPool2d(2, 2))
-        self.conv.add_module(name='layer3', module=nn.Conv2d(1, 6, 5, stride=1, padding=0))
+        self.conv.add_module(name='layer3', module=nn.Conv2d(6, 16, 5, stride=1, padding=0))
         self.conv.add_module(name='layer4', module=nn.MaxPool2d(2, 2))
 
         self.fc = nn.Sequential()
